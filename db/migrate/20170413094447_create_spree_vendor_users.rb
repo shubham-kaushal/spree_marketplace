@@ -1,4 +1,4 @@
-class CreateSpreeVendorUsers < SpreeExtension::Migration[4.2]
+class CreateSpreeVendorUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :spree_vendor_users do |t|
       t.references :vendor

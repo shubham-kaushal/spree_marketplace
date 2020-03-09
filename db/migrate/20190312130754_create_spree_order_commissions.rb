@@ -1,4 +1,4 @@
-class CreateSpreeOrderCommissions < SpreeExtension::Migration[4.2]
+class CreateSpreeOrderCommissions < ActiveRecord::Migration[5.2]
   def change
     create_table :spree_order_commissions do |t|
       t.references :order

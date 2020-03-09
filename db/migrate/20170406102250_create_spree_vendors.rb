@@ -1,4 +1,4 @@
-class CreateSpreeVendors < SpreeExtension::Migration[4.2]
+class CreateSpreeVendors < ActiveRecord::Migration[5.2]
   def change
     create_table :spree_vendors do |t|
       t.string :name

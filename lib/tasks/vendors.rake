@@ -1,4 +1,4 @@
-namespace :spree_multi_vendor do
+namespace :spree_marketplace do
   namespace :sample do
     desc 'Create sample Vendor and Vendor User'
     task create: :environment do
