@@ -6,9 +6,7 @@ Check out this extension [multi vendor marketplace demo](https://spreecommerce.o
 
 Developed and maintained by:
 
-[![VeroLa](./app/assets/images/verola-1st-330.png)][VeroLa]
-
-<img src="https://i.imgur.com/cp2J7li.png" width="50">
+<img src="./app/assets/images/verola-1st-330.png" width="100">[VeroLa]
 
 ## Features
 
@@ -84,12 +82,6 @@ Simply add this require statement to your spec_helper:
 ```ruby
 require 'spree_marketplace/factories'
 ```
-
-## Contributing
-
-If you'd like to contribute, please take a look at the
-[instructions](CONTRIBUTING.md) for installing dependencies and crafting a good
-pull request.
 
 ## License
 
