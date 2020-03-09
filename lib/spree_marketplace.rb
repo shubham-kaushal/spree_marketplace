@@ -1,9 +1,7 @@
 require 'spree_core'
-require 'spree_multi_vendor/engine'
-require 'spree_multi_vendor/version'
-require 'spree_extension'
+require 'spree_marketplace/engine'
 
-module SpreeMultiVendor
+module SpreeMarketplace
   # TODO: this should be moved into preferences
   def self.vendorized_models
     [

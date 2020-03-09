@@ -6,7 +6,7 @@ require 'spree_marketplace/version'
 
 Gem::Specification.new do |spec|
   spec.platform    = Gem::Platform::RUBY
-  spec.name        = 'spree_multi_vendor'
+  spec.name        = 'spree_marketplace'
   spec.version     = SpreeMarketplace.version
   spec.summary     = 'Spree marketplace extension'
   spec.description = 'Spree marketplace extension'
@@ -25,7 +25,6 @@ Gem::Specification.new do |spec|
   spree_version = '>= 3.2.0', '< 5.0'
   spec.add_dependency 'spree_core', spree_version
   spec.add_dependency 'spree_backend', spree_version
-  spec.add_dependency 'spree_extension'
   spec.add_dependency 'deface', '~> 1.0'
 
   spec.add_development_dependency 'appraisal'
