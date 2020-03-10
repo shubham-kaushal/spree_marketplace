@@ -15,8 +15,8 @@
       <div class="form-group">
         <%= f.field_container :image do %>
           <%= f.label :image, Spree.t(:image) %>
-          <% @vendor.image ? url = main_app.url_for(@vendor.image.url(:small)) : url = "marketplace-logo" %>
-          <%= image_tag url, id: "img-prev" %>
+          <% @vendor.image ? url = main_app.url_for(@vendor.image.url(:small)) : url = "shop-2" %>
+          <%= image_tag url, id: "img-prev", width: "150px" %>
           <%= f.file_field :image, :onchange => "readURL(this)" %>
         <% end %>
       </div>
