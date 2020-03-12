@@ -78,14 +78,14 @@ class Spree::VendorAbility
     can :manage, Spree::ProductProperty, property: { vendor_id: @vendor_ids }
   end
 
-#  def apply_shipment_permissions
-#    can :update, Spree::Shipment, inventory_units: { line_item: { product: { vendor_id: @vendor_ids } } }
-#  end
-
-  def apply_shipping_methods_permissions
-    can :manage, Spree::ShippingMethod, vendor_id: @vendor_ids
-    can :create, Spree::ShippingMethod
+  def apply_shipment_permissions
+    can :update, Spree::Shipment, inventory_units: { line_item: { product: { vendor_id: @vendor_ids } } }
   end
+
+#  def apply_shipping_methods_permissions
+#    can :manage, Spree::ShippingMethod, vendor_id: @vendor_ids
+#    can :create, Spree::ShippingMethod
+#  end
 
   def apply_stock_permissions
     can :admin, Spree::Stock
