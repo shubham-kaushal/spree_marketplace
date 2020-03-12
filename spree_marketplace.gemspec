@@ -32,7 +32,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'capybara-screenshot'
   spec.add_development_dependency 'capybara-select-2'
   spec.add_development_dependency 'chromedriver-helper'
-  spec.add_development_dependency 'coffee-rails'
   spec.add_development_dependency 'database_cleaner'
   spec.add_development_dependency 'factory_bot', '~> 4.7'
   spec.add_development_dependency 'ffaker'

@@ -22,10 +22,10 @@ module Spree
         has_one :image, as: :viewable, dependent: :destroy, class_name: 'Spree::VendorImage'
       end
       has_many :commissions, class_name: 'Spree::OrderCommission'
-      has_many :option_types
+#      has_many :option_types
       has_many :products
-      has_many :properties
-      has_many :shipping_methods
+#      has_many :properties
+#      has_many :shipping_methods
       has_many :stock_locations
       has_many :variants
       has_many :vendor_users
