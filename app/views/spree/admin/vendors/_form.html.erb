@@ -22,7 +22,7 @@
     <%= f.field_container :image do %>
       <%= f.label :image, Spree.t(:image) %>
       <div class="d-flex align-items-center">
-        <% @vendor.image ? url = main_app.url_for(@vendor.image.url(:small)) : url = "isell/home-logo" %>
+        <% @vendor.image ? url = main_app.url_for(@vendor.image.url(:small)) : url = "shop-2" %>
         <%= image_tag(url, id: "img-prev", class: "mr-3", width: "180px") %>
         <%= f.file_field :image, :onchange => "readURL(this)" %>
       </div>
