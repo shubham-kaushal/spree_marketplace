@@ -1,7 +1,7 @@
 module Spree::OrderDecorator
   def self.prepended(base)
-    base.has_many :commissions, class_name: 'Spree::OrderCommission'
-    base.state_machine.after_transition to: :complete, do: :generate_order_commissions
+#    base.has_many :commissions, class_name: 'Spree::OrderCommission'
+#    base.state_machine.after_transition to: :complete, do: :generate_order_commissions
     base.state_machine.after_transition to: :complete, do: :send_notification_mails_to_vendors
   end
 
