@@ -1,11 +1,2 @@
-function readURL(input){
-  if (input.files && input.files[0]){
-
-    var reader = new FileReader();
-
-    reader.onload = function (e){
-      $('#img-prev').attr('src', e.target.result);
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-};
+//= require spree_marketplace/image_preview
+//= require spree_marketplace/avoid_cents_and_apply_commission

@@ -7,6 +7,9 @@ Deface::Override.new(
             <div data-hook="admin_vendor_commission" class="card bg-light mb-3">
               <div class="card-body">
                 <%= Spree.t(:commission) + ": " + @product.vendor.commission_rate.to_s + " %" %>
+                <div id="vendor-commission" style="display: none;">
+                  <%= @product.vendor.commission_rate %>
+                </div>
               </div>
             </div>
           <% end %>
