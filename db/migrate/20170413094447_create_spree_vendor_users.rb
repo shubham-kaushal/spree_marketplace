@@ -5,7 +5,7 @@ class CreateSpreeVendorUsers < ActiveRecord::Migration[5.2]
       t.references :user
     end
     add_index :spree_vendor_users, [:vendor_id, :user_id], unique: true
-    add_index :spree_vendor_users, :vendor_id
-    add_index :spree_vendor_users, :user_id
+#    add_index :spree_vendor_users, :vendor_id
+#    add_index :spree_vendor_users, :user_id
   end
 end

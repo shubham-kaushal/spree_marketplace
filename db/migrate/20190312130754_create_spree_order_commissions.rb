@@ -8,7 +8,7 @@ class CreateSpreeOrderCommissions < ActiveRecord::Migration[5.2]
       t.timestamps
     end
     add_index :spree_order_commissions, [:order_id, :vendor_id], unique: true
-    add_index :spree_order_commissions, :order_id
-    add_index :spree_order_commissions, :vendor_id
+#    add_index :spree_order_commissions, :order_id
+#    add_index :spree_order_commissions, :vendor_id
   end
 end
