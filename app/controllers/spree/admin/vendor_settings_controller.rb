@@ -2,7 +2,7 @@ module Spree
   module Admin
     class VendorSettingsController < Spree::Admin::BaseController
       before_action :authorize
-      before_action :load_vendor
+      before_action :load_vendor, except: :commission
 
       def update
         if vendor_params[:image] && Spree.version.to_f >= 3.6
@@ -12,6 +12,14 @@ module Spree
           redirect_to admin_vendor_settings_path
         else
           render :edit
+        end
+      end
+
+      def commission
+        if params[:vendor]
+          vendor = Spree::Vendor.find_by_id(params[:vendor])
+          commission = vendor.commission_rate
+          render json: { commission: commission }          
         end
       end
 

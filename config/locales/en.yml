@@ -5,6 +5,8 @@ en:
         one: Vendor
         other: Vendors
     attributes:
+      spree/product:
+        vendor: Tienda      
       spree/vendor:
         about_us: About us
         contact_us: Contact us
