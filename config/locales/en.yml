@@ -11,7 +11,8 @@ en:
         about_us: About us
         contact_us: Contact us
         image: Image
-        name: name
+        name: Name
+        owner: Owner
         state: state
         created_at: created at
         priority: priority
@@ -27,6 +28,7 @@ en:
         dear_vendor: Dear Vendor,
         subject: Vendor notification
         thanks: Thanks
+    owner: Owner
     vendor: Vendor
     vendor_name: Vendor Name
     vendor_states:

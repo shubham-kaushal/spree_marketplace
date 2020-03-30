@@ -7,7 +7,7 @@ Deface::Override.new(
 
 Deface::Override.new(
   virtual_path: 'spree/admin/shared/_main_menu',
-  name: 'Add vendors tab to main menu',
+  name: 'add_vendors_tab_to_main_menu',
   insert_bottom: 'nav',
   partial: 'spree/admin/shared/vendors_tab'
 )

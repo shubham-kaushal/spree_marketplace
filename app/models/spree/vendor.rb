@@ -10,12 +10,18 @@ module Spree
       presence: true,
       uniqueness: { case_sensitive: false }
 
+    validates :owner, presence: true
+
     validates :slug, uniqueness: true
     if Spree.version.to_f >= 3.6
       validates_associated :image
     end
 
     validates :notification_email, email: true, allow_blank: true
+
+    belongs_to :owner, class_name: Spree.user_class.name, foreign_key: 'owner_id'
+
+    attr_accessor :email
 
     with_options dependent: :destroy do
       if Spree.version.to_f >= 3.6
