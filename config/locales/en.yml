@@ -31,7 +31,9 @@ en:
     owner: Owner
     vendor: Vendor
     vendor_name: Vendor Name
+    vendor_state: State
     vendor_states:
       active: Active
       blocked: Blocked
       pending: Pending
+    vendor_users: Vendor Users

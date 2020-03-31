@@ -3,8 +3,13 @@
     <%= tab plural_resource_name(Spree::Vendor), url: admin_vendors_path, icon: 'home' %>
   </ul>
 <% end %>
-<% if defined?(current_spree_vendor) && current_spree_vendor %>
+<% if defined?(spree_vendor_user) && spree_vendor_user %>
   <ul class="nav nav-sidebar border-bottom">
-    <%= tab Spree::Vendor.model_name.human, url: admin_vendor_settings_path, icon: 'home' %>
+		<% if current_spree_user.vendors.one? %>
+    	<%= tab Spree::Vendor.model_name.human, url: edit_admin_vendor_setting_path(current_spree_user.vendors.first), icon: 'home' %>
+    <% end %>
+ 		<% if current_spree_user.vendors.many? %>
+    	<%= tab plural_resource_name(Spree::Vendor), url: admin_vendor_settings_path, icon: 'home' %>
+    <% end %>
   </ul>
 <% end %>

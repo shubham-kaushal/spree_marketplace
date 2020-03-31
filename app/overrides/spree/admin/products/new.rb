@@ -7,7 +7,7 @@ Deface::Override.new(
               <div data-hook="new_product_vendor" class="col-12 col-md-4">
                 <%= f.field_container :vendor, class: ['form-group'] do %>
                   <%= f.label :vendor_id, Spree.t(:vendor) %> <span class="required">*</span>
-                  <%= f.collection_select(:vendor_id, @vendors, :id, :name, {include_blank: ""}, {class: 'select2'}) %>
+                  <%= f.collection_select(:vendor_id, @vendors, :id, :name, { }, {class: 'select2'}) %>
                 <% end %>
                 <div id="vendor-commission" style="display: none;"> </div>                
               </div>

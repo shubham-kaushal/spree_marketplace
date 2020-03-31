@@ -4,6 +4,10 @@ module Spree
       before_action :authorize
       before_action :load_vendor, except: :commission
 
+      def index
+        @vendors = current_spree_user.vendors
+      end
+
       def update
         if vendor_params[:image] && Spree.version.to_f >= 3.6
           @vendor.create_image(attachment: vendor_params[:image])

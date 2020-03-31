@@ -95,7 +95,7 @@ class Spree::VendorAbility
   end
 
   def apply_vendor_settings_permissions
-    can :manage, :vendor_settings
+    can [:manage, :index], :vendor_settings
   end
 
   def apply_state_changes_permissions
