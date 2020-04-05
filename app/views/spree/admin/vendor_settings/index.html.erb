@@ -57,7 +57,7 @@
             <%= pretty_time(vendor.created_at) %>
           </td>
           <td class="actions actions-1 text-right">            
-            <%= link_to_with_icon('edit', Spree.t(:edit), edit_admin_vendor_setting_path(vendor), class: 'btn btn-primary btn-sm', no_text: true, data: { action: 'edit' }) %>
+            <%= link_to_with_icon('edit', Spree.t(:edit), edit_admin_vendor_setting_path(vendor.id), class: 'btn btn-primary btn-sm', no_text: true, data: { action: 'edit' }) %>
           </td>
         </tr>
       <% end %>

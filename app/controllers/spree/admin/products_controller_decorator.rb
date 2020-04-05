@@ -1,7 +1,12 @@
 module Spree::Admin::ProductsControllerDecorator
   def self.prepended(base)
-    base.before_action :set_vendor_id, only: [:create, :update]
-    base.before_action :load_vendors, only: [:new, :create, :edit, :update]
+#    base.before_action :set_vendor_id, only: [:create, :update]    
+    base.before_action :load_vendors, only: [:new, :edit]
+  end
+
+  def new
+    @product.vendor = @vendors.first
+    super
   end
 
   def stock
@@ -17,8 +22,13 @@ module Spree::Admin::ProductsControllerDecorator
   private
 
   def load_vendors
-    @vendors = Spree::Vendor.order(Arel.sql('LOWER(name)'))
+    if current_spree_user.respond_to?(:has_spree_role?) && current_spree_user.has_spree_role?(:admin)
+      @vendors = Spree::Vendor.order(Arel.sql('LOWER(name)'))
+    elsif current_spree_user.vendors
+      @vendors = current_spree_user.vendors
+    end
   end
+
 end
 
 Spree::Admin::ProductsController.prepend Spree::Admin::ProductsControllerDecorator

@@ -2,14 +2,15 @@
   <ul class="nav nav-sidebar border-bottom">
     <%= tab plural_resource_name(Spree::Vendor), url: admin_vendors_path, icon: 'home' %>
   </ul>
-<% end %>
-<% if defined?(spree_vendor_user) && spree_vendor_user %>
-  <ul class="nav nav-sidebar border-bottom">
-		<% if current_spree_user.vendors.one? %>
-    	<%= tab Spree::Vendor.model_name.human, url: edit_admin_vendor_setting_path(current_spree_user.vendors.first), icon: 'home' %>
-    <% end %>
- 		<% if current_spree_user.vendors.many? %>
-    	<%= tab plural_resource_name(Spree::Vendor), url: admin_vendor_settings_path, icon: 'home' %>
-    <% end %>
-  </ul>
+<% else %>
+  <% if current_spree_user.vendors %>
+    <ul class="nav nav-sidebar border-bottom">
+		  <% if vendors_size == 1 %>
+        <%= tab Spree::Vendor.model_name.human, url: edit_admin_vendor_setting_path(current_spree_user.vendors.first), icon: 'home' %>
+      <% end %>
+      <% if vendors_size > 1 %>
+        <%= tab plural_resource_name(Spree::Vendor), url: admin_vendor_settings_path, icon: 'home' %>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>

@@ -28,7 +28,8 @@ Deface::Override.new(
                              class: 'form-control',
                              required: true,
                              oninvalid: \"this.setCustomValidity('Completa este campo')\",
-                             oninput: \"setCustomValidity('')\" %>"
+                             oninput: \"setCustomValidity('')\" %>
+          <div id='vendor-commission' style='display: none;'><%= @product.vendor.commission_rate %></div>"
 )
 
 Deface::Override.new(
@@ -36,15 +37,12 @@ Deface::Override.new(
     name: 'enable_product_vendor_management',
     insert_after: 'div[data-hook="admin_product_form_price"]',
     text: <<-HTML
-            <% if current_spree_user.respond_to?(:has_spree_role?) && current_spree_user.has_spree_role?(:admin) %>
+            <% if @vendors %>
               <div data-hook="admin_product_form_vendor">
                 <%= f.field_container :vendor, class: ['form-group'] do %>
                   <%= f.label :vendor_id, raw(Spree.t(:vendor) + required_span_tag) %>
                   <%= f.collection_select(:vendor_id, @vendors, :id, :name, { }, {class: 'select2'}) %>
                 <% end %>
-                <div id="vendor-commission" style="display: none;">
-                  <%= @product.vendor.commission_rate %>
-                </div>
               </div>
             <% end %>
           HTML

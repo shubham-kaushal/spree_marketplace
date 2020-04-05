@@ -2,7 +2,7 @@ module Spree
   module Admin
     class VendorSettingsController < Spree::Admin::BaseController
       before_action :authorize
-      before_action :load_vendor, except: :commission
+      before_action :load_vendor, except: [:index, :commission]
 
       def index
         @vendors = current_spree_user.vendors
@@ -13,6 +13,8 @@ module Spree
           @vendor.create_image(attachment: vendor_params[:image])
         end
         if @vendor.update(vendor_params.except(:image))
+          user = Spree::User.find_by_email(vendor_params[:email]) if vendor_params[:email]
+          Spree::VendorUser.create(user: user, vendor: @vendor) if user
           redirect_to admin_vendor_settings_path
         else
           render :edit
@@ -34,7 +36,11 @@ module Spree
       end
 
       def load_vendor
-        @vendor = current_spree_vendor
+        if params[:id]
+          @vendor = Spree::Vendor.find_by_id(params[:id])
+        else
+#          @vendor = current_spree_vendor
+        end
         raise ActiveRecord::RecordNotFound unless @vendor
       end
 

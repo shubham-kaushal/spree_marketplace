@@ -1,8 +1,7 @@
 $().ready(function($) {
-  if ( $('[data-hook="new_product_vendor"]').length ||
+  if ( $('[data-hook="new_product"]').length ||
        $('[data-hook="admin_product_form_vendor"]').length ||
        $('[data-hook="admin_variant_form_fields"]').length ) {
-    if ($('#product_vendor_id').val()) { GetVendorCommission($('#product_vendor_id').val()) }
     $('#product_vendor_id').on("change", function(){ GetVendorCommission($(this).val()) })
     $("#product_cost_price").on("change", function(){ ProductNoCentsAndCommission() })
     $("#variant_cost_price").on("change", function(){ VariantNoCentsAndCommission() })    

@@ -2,7 +2,7 @@
   <%= @vendor.name %>
 <% end %>
 
-<%= form_for [:admin, @vendor], url: admin_vendor_settings_url do |f| %>
+<%= form_for [:admin, @vendor], url: admin_vendor_setting_url(@vendor.id) do |f| %>
   <fieldset>
     <%= render partial: 'spree/shared/error_messages', locals: { target: @vendor } %>
     <div class="form-group">
@@ -17,7 +17,7 @@
           <%= f.label :image, Spree.t(:image) %>
           <% @vendor.image ? url = main_app.url_for(@vendor.image.url(:small)) : url = "shop-2" %>
           <%= image_tag url, id: "img-prev", width: "150px" %>
-          <%= f.file_field :image, :onchange => "readURL(this)" %>
+          <%= f.file_field :image, class: "js-read-URL" %>
         <% end %>
       </div>
     <% end %>
@@ -39,6 +39,20 @@
         <%= f.email_field :notification_email, class: 'form-control' %>
       <% end %>
     </div>
+    <% if current_spree_user == @vendor.owner %>
+      <%= f.field_container :user_ids, class: ['form-group'] do %>
+        <%= f.label :user_ids, Spree.t(:vendor_users) %>
+        <%= f.collection_select(:user_ids, @vendor.users, :id, :email, { }, {class: 'select2', multiple: true}) %>
+      <% end %>
+      <%= f.field_container :email, class: ['form-group'] do %>
+        <%= f.label :email, Spree.t(:add_vendor_user) %>
+        <%= f.email_field :email,
+                           class: 'form-control',
+                           required: true,
+                           oninvalid: "setCustomValidity('Ingresa un email válido')",
+                           oninput: "setCustomValidity('')" %>
+      <% end %>
+    <% end %>
     <div class="form-actions" data-hook="buttons">
       <%= button Spree.t('actions.update'), 'save' %>
       <span class="or"><%= Spree.t(:or) %></span>

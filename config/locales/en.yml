@@ -17,6 +17,7 @@ en:
         created_at: created at
         priority: priority
   spree:
+    add_vendor_user: Add Vendor User
     back_to_vendors_list: Back To Vendors List
     commission: Commission
     cost_price: Vendor Income
