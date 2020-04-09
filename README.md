@@ -1,8 +1,7 @@
 # Spree Marketplace
 
-This is a [spree multi vendor marketplace](https://spreecommerce.org/use-cases/multi-vendor-marketplace/) extension. It's a great starting point if you're building a marketplace on top of [Spree](https://spreecommerce.org). Our goal was flexibility to allow you to tweak it to your needs. 
-
-Check out this extension [multi vendor marketplace demo](https://spreecommerce.org/launch-a-multi-vendor-marketplace-within-a-few-weeks-with-spree-commerce/) and launch your marketplace within weeks, not months.
+This is a spree marketplace based on spree multi vendor extension. Unlike multi vendor here we avoid option type, properties and shipping methods management by vendors. They only can be configured and managed by the store admin. 
+(Spree 4.1 ready)
 
 Developed and maintained by:
 
@@ -14,17 +13,13 @@ You can create and manage Vendors who can manage on their own:
 
 - [X] Orders
 - [X] Products
-- [X] Option Types
-- [X] Properties
 - [X] Stock Locations
-- [X] Shipping Methods
 - [X] Vendor profile
 
 Also:
-- [X] Super Admins can assign Users to Vendors
-- [X] You can modify which permissions and models/resources Vendors can manage quite easily
+- [X] Now there is a Vendor Owner who can assign Users to the Vendors he own.
+- [X] We add another features like sku and backorthered products configurations.
 
-Contributions welcome! :)
 
 ## Installation
 
