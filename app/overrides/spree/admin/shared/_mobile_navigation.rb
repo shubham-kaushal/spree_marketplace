@@ -1,4 +1,4 @@
-include ComponentsHelper
+include SpreeMarketplace::ComponentsHelper
 
 if backendx_available?
 	Deface::Override.new(

@@ -2,24 +2,23 @@
   <li class="d-flex justify-content-between align-items-center mobile-navigation-list-item">
     <%= link_to spree.admin_vendors_url, class: "w-100" do %>
       <%= content_tag(:span, nil, class: 'icon icon-home') %>
-      <%= Spree.t(:vendor) %>
+      <%= Spree.t(:vendor).pluralize %>
     <% end %>
   </li>
 <% else %>
   <% if current_spree_user.vendors %>
-		<% if current_spree_user.vendors.size == 1 %>
-      <li class="d-flex justify-content-between align-items-center mobile-navigation-list-item">
-        <%= link_to spree.edit_admin_vendor_setting_url(current_spree_user.vendors.first), class: "w-100" do %>
-          <%= content_tag(:span, nil, class: 'icon icon-home') %>
-          <%= Spree.t(:vendor) %>
-        <% end %>
-      </li>
-    <% end %>
-    <% if current_spree_user.vendors.size > 1 %>
+    <% if multi_vendors %>
       <li class="d-flex justify-content-between align-items-center mobile-navigation-list-item">
         <%= link_to spree.admin_vendor_settings_url, class: "w-100" do %>
           <%= content_tag(:span, nil, class: 'icon icon-home') %>
           <%= Spree.t(:vendor).pluralize %>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="d-flex justify-content-between align-items-center mobile-navigation-list-item">
+        <%= link_to spree.edit_admin_vendor_setting_url(current_spree_user.vendors.first), class: "w-100" do %>
+          <%= content_tag(:span, nil, class: 'icon icon-home') %>
+          <%= Spree.t(:vendor) %>
         <% end %>
       </li>
     <% end %>
