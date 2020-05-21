@@ -1,6 +1,6 @@
 module Spree::ProductDecorator
   def self.prepended(base)
-  	base.validates :vendor, presence: true
+    base.validates :vendor, presence: true
     base.after_destroy :touch_vendor
   end
 

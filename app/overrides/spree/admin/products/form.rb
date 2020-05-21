@@ -1,35 +1,16 @@
 Deface::Override.new(
-    virtual_path: 'spree/admin/products/_form',
-    name: 'remove_product_price_required_span',
-    replace: "erb[loud]:contains('f.label :price')",
-    text: "<%= f.label :price, Spree.t(:master_price) %>"
-)
-
-Deface::Override.new(
-    virtual_path: 'spree/admin/products/_form',
-    name: 'make_product_price_readonly',
-    replace: "erb[loud]:contains('f.text_field :price')",
-    text: "<%= f.text_field :price, value: number_to_currency(@product.price, unit: ''), class: 'form-control', readonly: true %>"
-)
-
-Deface::Override.new(
-    virtual_path: 'spree/admin/products/_form',
-    name: 'add_product_cost_price_required_span',
-    replace: "erb[loud]:contains('f.label :cost_price')",
-    text: "<%= f.label :cost_price, raw(Spree.t(:cost_price) + required_span_tag) %>"
-)
-
-Deface::Override.new(
-    virtual_path: 'spree/admin/products/_form',
-    name: 'make_product_cost_price_required',
-    replace: "erb[loud]:contains('f.text_field :cost_price')",
-    text: "<%= f.text_field :cost_price, 
-                             value: number_to_currency(@product.cost_price, unit: ''),
-                             class: 'form-control',
-                             required: true,
-                             oninvalid: \"this.setCustomValidity('Completa este campo')\",
-                             oninput: \"setCustomValidity('')\" %>
-          <div id='vendor-commission' style='display: none;'><%= @product.vendor.commission_rate %></div>"
+  virtual_path: 'spree/admin/products/_form',
+  name: 'enable_vendors_to_manage_product_master_price',
+  replace: 'div[data-hook="admin_product_form_price"]',
+  text: <<-HTML
+          <div data-hook="admin_product_form_price">
+            <%= f.field_container :price, class: ['form-group'] do %>
+              <%= f.label :price, raw(Spree.t(:master_price) + content_tag(:span, ' *', class: "required")) %>
+              <%= f.text_field :price, value: number_to_currency(@product.price, unit: ''), class: 'form-control', disabled: (cannot? :update, Spree::Price) %>
+              <%= f.error_message_on :price %>
+            <% end %>
+          </div>            
+        HTML
 )
 
 Deface::Override.new(

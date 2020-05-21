@@ -9,11 +9,14 @@ class Spree::VendorAbility
       apply_classifications_permissions
       apply_order_permissions
       apply_image_permissions
+#      apply_option_type_permissions
       apply_price_permissions
       apply_product_option_type_permissions
       apply_product_permissions
       apply_product_properties_permissions
+#      apply_properties_permissions
       apply_shipment_permissions
+#      apply_shipping_methods_permissions
       apply_stock_permissions
       apply_stock_item_permissions
       apply_stock_location_permissions
