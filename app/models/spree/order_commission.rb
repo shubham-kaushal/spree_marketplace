@@ -7,5 +7,6 @@ module Spree
     validates :vendor_id, uniqueness: { scope: :order_id }
 
     scope :for_vendor, ->(vendor) { where(vendor_id: vendor.id) }
+    scope :for_multi_vendor, ->(user) { where(vendor_id: user.vendors.ids) }
   end
 end

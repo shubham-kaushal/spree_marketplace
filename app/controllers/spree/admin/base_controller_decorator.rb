@@ -6,7 +6,7 @@ module Spree::Admin::BaseControllerDecorator
 
   def self.prepended(base)
     base.helper_method :current_spree_vendor
-    base.helper_method :multi_vendors
+    base.helper_method :multi_vendor
     base.helper_method :vendors_sku
   end
 end

@@ -5,7 +5,7 @@
 <% else %>
   <% if current_spree_user.vendors %>
     <ul class="nav nav-sidebar border-bottom">
-      <% if multi_vendors %>
+      <% if multi_vendor %>
         <%= tab plural_resource_name(Spree::Vendor), url: admin_vendor_settings_path, icon: 'home' %>
       <% else %>      
         <%= tab Spree::Vendor.model_name.human, url: edit_admin_vendor_setting_path(current_spree_user.vendors.first), icon: 'home' %>

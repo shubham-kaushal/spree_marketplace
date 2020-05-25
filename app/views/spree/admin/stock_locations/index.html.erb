@@ -13,7 +13,7 @@
         <th><%= Spree.t(:name) %></th>
         <th><%= Spree.t(:status) %></th>
         <th><%= Spree.t(:stock_movements) %></th>
-        <% if current_spree_user.respond_to?(:has_spree_role?) && current_spree_user.has_spree_role?(:admin) %>
+        <% if current_spree_user.respond_to?(:has_spree_role?) && current_spree_user.has_spree_role?(:admin) || multi_vendor %>
           <th><%= Spree.t(:vendor_name) %>
         <% end %>
         <th class="actions"></th>
@@ -28,7 +28,7 @@
           <td><%= display_name(stock_location) %></td>
           <td><span class="state <%= state(stock_location) %>"><%= Spree.t(state(stock_location)) %></span></td>
           <td><%= link_to Spree.t(:stock_movements), admin_stock_location_stock_movements_path(stock_location.id) %> </td>
-          <% if current_spree_user.respond_to?(:has_spree_role?) && current_spree_user.has_spree_role?(:admin) %>
+          <% if current_spree_user.respond_to?(:has_spree_role?) && current_spree_user.has_spree_role?(:admin) || multi_vendor %>
             <td><%= stock_location.vendor.try(:name) %>
           <% end %>
           <td class="actions actions-2 text-center">

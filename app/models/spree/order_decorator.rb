@@ -21,6 +21,18 @@ module Spree::OrderDecorator
     Spree::Money.new(vendor_total(vendor), { currency: currency })
   end
 
+  def display_multi_vendor_ship_total(manager)
+    Spree::Money.new(multi_vendor_ship_total(manager), { currency: currency })
+  end 
+
+  def display_multi_vendor_subtotal(manager)
+    Spree::Money.new(multi_vendor_subtotal(manager), { currency: currency })
+  end
+
+  def display_multi_vendor_total(manager)
+    Spree::Money.new(multi_vendor_total(manager), { currency: currency })
+  end
+
   def vendor_ship_total(vendor)
     shipments.for_vendor(vendor).sum(:pre_tax_amount)
   end
@@ -33,6 +45,23 @@ module Spree::OrderDecorator
     total - line_items.not_for_vendor(vendor).sum(:pre_tax_amount) - shipments.not_for_vendor(vendor).sum(:pre_tax_amount)
   end
 
+  def multi_vendor_ship_total(manager)
+    shipments.for_multi_vendor(manager).sum(:pre_tax_amount)
+  end
+
+  def multi_vendor_subtotal(manager)
+    line_items.for_multi_vendor(manager).sum(:pre_tax_amount)
+  end  
+
+  def multi_vendor_total(manager)
+    multi_vendor_total = 0
+    manager.vendors.each do |vendor|
+      vendor_total = total - line_items.not_for_vendor(vendor).sum(:pre_tax_amount) - shipments.not_for_vendor(vendor).sum(:pre_tax_amount)
+      multi_vendor_total += vendor_total      
+    end
+    return multi_vendor_total
+  end
+
   def display_order_commission
     Spree::Money.new(commissions.sum(:amount), { currency: currency })
   end
@@ -43,6 +72,14 @@ module Spree::OrderDecorator
 
   def vendor_commission(vendor)
     commissions.for_vendor(vendor).sum(:amount)
+  end
+
+  def display_multi_vendor_commission(manager)
+    Spree::Money.new(multi_vendor_commission(manager), { currency: currency })
+  end
+
+  def multi_vendor_commission(manager)
+    commissions.for_multi_vendor(manager).sum(:amount)
   end
 
   def send_notification_mails_to_vendors

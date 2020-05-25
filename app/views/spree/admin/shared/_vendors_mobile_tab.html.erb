@@ -7,7 +7,7 @@
   </li>
 <% else %>
   <% if current_spree_user.vendors %>
-    <% if multi_vendors %>
+    <% if multi_vendor %>
       <li class="d-flex justify-content-between align-items-center mobile-navigation-list-item">
         <%= link_to spree.admin_vendor_settings_url, class: "w-100" do %>
           <%= content_tag(:span, nil, class: 'icon icon-home') %>

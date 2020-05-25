@@ -16,9 +16,9 @@ Deface::Override.new(
 Deface::Override.new(
     virtual_path: 'spree/admin/products/_form',
     name: 'enable_product_vendor_management',
-    insert_after: 'div[data-hook="admin_product_form_price"]',
+    insert_top: 'div[data-hook="admin_product_form_right"]',
     text: <<-HTML
-            <% if @vendors %>
+            <% if multi_vendor %>
               <div data-hook="admin_product_form_vendor">
                 <%= f.field_container :vendor, class: ['form-group'] do %>
                   <%= f.label :vendor_id, raw(Spree.t(:vendor) + required_span_tag) %>
