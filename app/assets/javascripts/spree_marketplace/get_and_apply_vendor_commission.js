@@ -3,8 +3,10 @@ $().ready(function($) {
        $('[data-hook="admin_product_form_vendor"]').length ||
        $('[data-hook="admin_variant_form_fields"]').length ) {
     $('#product_vendor_id').on("change", function(){ GetVendorCommission($(this).val()) })
-    $("#product_cost_price").on("change", function(){ ProductNoCentsAndCommission() })
-    $("#variant_cost_price").on("change", function(){ VariantNoCentsAndCommission() })    
+    $("#product_price").on("change", function(){ ProductNoCentsAndCommission("price") })  
+    $("#product_cost_price").on("change", function(){ ProductNoCentsAndCommission("cost") })
+    $("#variant_price").on("change", function(){ VariantNoCentsAndCommission("price") })
+    $("#variant_cost_price").on("change", function(){ VariantNoCentsAndCommission("cost") })    
   }
 })
 
@@ -17,38 +19,56 @@ function GetVendorCommission(vendor) {
     data: { vendor },
     success: function(data) {
       $("#vendor-commission").html(data.commission)
-      ProductNoCentsAndCommission()
+      ProductNoCentsAndCommission("vendor")
     }
   })
   return false
 }
 
 
-function ProductNoCentsAndCommission() {
+function ProductNoCentsAndCommission(caller) {
   var productCostPrice = $("#product_cost_price")
-  var costPrice = parseFloat(productCostPrice.val())
-  var commission = parseFloat($("#vendor-commission").text())
+  var productPrice = $("#product_price")
 
-  if ($.isNumeric(costPrice) && $.isNumeric(commission)) {
-    costPrice = Math.round(costPrice)
-    productCostPrice.val(costPrice)
+  var cost = parseFloat(productCostPrice.val())
+  var price = parseFloat(productPrice.val())
+  var comm = parseFloat($("#vendor-commission").text())
 
-    sellPrice = Math.round(costPrice*(100+commission)/100)
-    $("#product_price").val(sellPrice)
+  if ($.isNumeric(comm) && (["cost", "vendor"].indexOf(caller) != -1) && $.isNumeric(cost) ) {
+    cost = Math.round(cost)
+    productCostPrice.val(cost)
+    price = Math.round(cost*(100+comm)/100)
+    productPrice.val(price)
+  }
+
+  if ($.isNumeric(comm) && (caller == "price") && $.isNumeric(price) ) {
+    price = Math.round(price)
+    productPrice.val(price)
+    cost = Math.round(100*price/(100+comm))
+    productCostPrice.val(cost)
   }
 }
 
 
-function VariantNoCentsAndCommission() {
+function VariantNoCentsAndCommission(caller) {
   var variantCostPrice = $("#variant_cost_price")
-  var costPrice = parseFloat(variantCostPrice.val())
-  var commission = parseFloat($("#vendor-commission").text())
+  var variantPrice = $("#variant_price")
 
-  if ($.isNumeric(costPrice) && $.isNumeric(commission)) {
-    costPrice = Math.round(costPrice)
-    variantCostPrice.val(costPrice)
+  var cost = parseFloat(variantCostPrice.val())
+  var price = parseFloat(variantPrice.val())
+  var comm = parseFloat($("#vendor-commission").text())
 
-    sellPrice = Math.round(costPrice*(100+commission)/100)
-    $("#variant_price").val(sellPrice)
+  if ($.isNumeric(comm) && (caller == "cost") && $.isNumeric(cost) ) {
+    cost = Math.round(cost)
+    variantCostPrice.val(cost)
+    price = Math.round(cost*(100+comm)/100)
+    variantPrice.val(price)
+  }
+
+  if ($.isNumeric(comm) && (caller == "price") && $.isNumeric(price) ) {
+    price = Math.round(price)
+    variantPrice.val(price)
+    cost = Math.round(100*price/(100+comm))
+    variantCostPrice.val(cost)
   }
 }

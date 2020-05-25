@@ -18,13 +18,17 @@ Deface::Override.new(
     name: 'enable_product_vendor_management',
     insert_top: 'div[data-hook="admin_product_form_right"]',
     text: <<-HTML
-            <% if multi_vendor %>
+            <% if current_spree_user.respond_to?(:has_spree_role?) && current_spree_user.has_spree_role?(:admin) || multi_vendor %>
               <div data-hook="admin_product_form_vendor">
                 <%= f.field_container :vendor, class: ['form-group'] do %>
                   <%= f.label :vendor_id, raw(Spree.t(:vendor) + required_span_tag) %>
                   <%= f.collection_select(:vendor_id, @vendors, :id, :name, { }, {class: 'select2'}) %>
+                  <%= f.error_message_on :vendor_id %>
                 <% end %>
               </div>
             <% end %>
+            <div id="vendor-commission" style="display: none;">
+              <%= @product.vendor.commission_rate if @product.vendor %>
+            </div>
           HTML
 )
